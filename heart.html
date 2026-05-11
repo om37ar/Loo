@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>قلب الحب 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    direction: rtl;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, #ffdde1, #ee9ca7);
+}
+
+/* العنوان */
+.title {
+    position: absolute;
+    top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #d81b60;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* القلب */
+.heart {
+    position: relative;
+    width: 200px;
+    height: 180px;
+    background: #ff2e63;
+    transform: rotate(-45deg);
+    animation: beat 1s infinite;
+    box-shadow: 0 0 25px rgba(255,0,80,0.6);
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 180px;
+    background: #ff2e63;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -100px;
+    left: 0;
+}
+
+.heart::after {
+    left: 100px;
+    top: 0;
+}
+
+/* الأسماء داخل القلب */
+.names {
+    position: absolute;
+    width: 200px;
+    height: 180px;
+    transform: rotate(45deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* نبض القلب */
+@keyframes beat {
+    0% { transform: rotate(-45deg) scale(1); }
+    50% { transform: rotate(-45deg) scale(1.1); }
+    100% { transform: rotate(-45deg) scale(1); }
+}
+
+/* ورود خفيفة */
+.rose {
+    position: absolute;
+    top: -10px;
+    font-size: 20px;
+    animation: fall 5s linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(-50px); opacity: 1; }
+    100% { transform: translateY(600px); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="title">💖 حب حقيقي بين قلبين 💖</div>
+
+<div class="heart">
+    <div class="names" id="names"></div>
+</div>
+
+<script>
+// جلب الأسماء من الصفحة الأولى
+const n1 = localStorage.getItem("name1") || "";
+const n2 = localStorage.getItem("name2") || "";
+
+// عرضهم داخل القلب
+document.getElementById("names").innerHTML = n1 + "<br>💞<br>" + n2;
+
+// ورود تتساقط
+for (let i = 0; i < 10; i++) {
+    let rose = document.createElement("div");
+    rose.className = "rose";
+    rose.innerHTML = "🌹";
+    rose.style.left = Math.random() * 100 + "vw";
+    rose.style.animationDuration = (3 + Math.random() * 3) + "s";
+    document.body.appendChild(rose);
+}
+</script>
+
+</body>
+</html>
